@@ -9,6 +9,7 @@ public class Player : MonoBehaviour {
     public float cameraSpeedVertical = 2.0f;
     public int maxHealth;
     public float DodgeRate = 2.0f;
+    public float DodgeDistance = 25.0f;
     public GameObject cameraRotator;
 
     private int currentHealth;
@@ -16,6 +17,8 @@ public class Player : MonoBehaviour {
     private float pitch = 0;
     private Weapon currentWeapon;
     private float DodgeTimer;
+
+    private int score = 0;
 
     // Use this for initialization
     void Start ()
@@ -94,21 +97,27 @@ public class Player : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.LeftControl) && Input.GetKey(KeyCode.A) ||
                 Input.GetKeyDown(KeyCode.A) && Input.GetKey(KeyCode.LeftControl))
             {
-                transform.position -= (transform.right) * movementDistance * (Time.deltaTime * 25.0f);
+                transform.position -= (transform.right) * movementDistance * (Time.deltaTime * DodgeDistance);
                 DodgeTimer = 0;
             }
             // Dodge Right
             if (Input.GetKeyDown(KeyCode.LeftControl) && Input.GetKey(KeyCode.D) ||
                 Input.GetKeyDown(KeyCode.D) && Input.GetKey(KeyCode.LeftControl))
             {
-                transform.position += (transform.right) * movementDistance * (Time.deltaTime * 25.0f);
+                transform.position += (transform.right) * movementDistance * (Time.deltaTime * DodgeDistance);
                 DodgeTimer = 0;
             }
         }
     }
     // ---------------------------------------------------
+
+    public int getScore()
+    {
+        return score;
+    }
+
+    public void incrementScore()
+    {
+        score++;
+    }
 }
-
-
-
-
