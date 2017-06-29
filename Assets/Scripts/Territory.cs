@@ -39,8 +39,9 @@ public class Territory : MonoBehaviour {
         // loop through enemies
         for (int i = 0; i < enemies.Count; i++)
         {
+            GetComponent<Enemy>();
             // if the enemy is dead
-            //if(enemies[i].Dead)
+            if (enemies[i].GetComponent<Enemy>().GetIsDead())
             {
                 // destroy enemy
                 Destroy(enemies[i]);
