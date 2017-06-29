@@ -12,11 +12,12 @@ public class Player : MonoBehaviour {
 
     private float yaw = 0;
     private float pitch = 0;
+    private Weapon currentWeapon;
 
 	// Use this for initialization
 	void Start ()
     {
-
+        currentWeapon = GetComponent<Weapon>();
 	}
 	
 	// Update is called once per frame
@@ -81,5 +82,11 @@ public class Player : MonoBehaviour {
 
         transform.eulerAngles = new Vector3(0.0f, yaw, 0.0f);
         cameraRotator.transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
+
+        // Firing weapon
+        if (Input.GetMouseButton(0))
+        {
+            currentWeapon.AttemptFire(cameraRotator.transform.forward);
+        }
     }
 }

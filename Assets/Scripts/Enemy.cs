@@ -8,15 +8,14 @@ public class Enemy : MonoBehaviour
     public float minDistanceToPlayer;
     public float maxDistanceToPlayer;
     public float maxFireRange;
-    public float fireRate;
-    public GameObject projectile;
-
-    private float fireTimer = 0;
+    
     private GameObject target;
+    private Weapon weapon;
 
 	void Start ()
     {
         target = GameObject.FindGameObjectWithTag("Player");
+        weapon = GetComponent<Weapon>();
 	}
 	
 	void Update ()
@@ -33,18 +32,9 @@ public class Enemy : MonoBehaviour
             transform.position = Vector3.MoveTowards(currentPosition, targetPosition, -movementSpeed * Time.deltaTime);
         }
 
-        if (fireTimer >= fireRate)
+        if (Vector3.Distance(currentPosition, targetPosition) < maxFireRange)
         {
-            if (Vector3.Distance(currentPosition, targetPosition) < maxFireRange)
-            {
-                GameObject newProjectile = Instantiate(projectile, transform.position, Quaternion.identity);
-                newProjectile.GetComponent<Projectile>().SetDirection(targetPosition - currentPosition);
-                fireTimer = 0;
-            }
-        }
-        else
-        {
-            fireTimer += Time.deltaTime;
+            weapon.AttemptFire(targetPosition - currentPosition);
         }
     }
 }

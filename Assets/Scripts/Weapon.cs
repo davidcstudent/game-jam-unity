@@ -1,0 +1,29 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Weapon : MonoBehaviour
+{
+    public float fireRate;
+    public GameObject projectile;
+
+    private float fireTimer;
+	
+	void Update ()
+    {
+        if (fireTimer < fireRate)
+        {
+            fireTimer += Time.deltaTime;
+        }
+	}
+
+    public void AttemptFire(Vector3 direction)
+    {
+        if (fireTimer >= fireRate)
+        {
+            GameObject newProjectile = Instantiate(projectile, transform.position, Quaternion.identity);
+            newProjectile.GetComponent<Projectile>().SetDirection(direction);
+            fireTimer = 0;
+        }
+    }
+}
