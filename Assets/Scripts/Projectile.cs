@@ -7,10 +7,10 @@ public class Projectile : MonoBehaviour
     public float maxLifeTime;
     public float speed;
     public int damage;
+    public bool playerOwned;
 
     private float currentLifeTime = 0;
     private Vector3 direction = new Vector3(0, 0, 0);
-    
 
 	void Start ()
     {
@@ -36,14 +36,23 @@ public class Projectile : MonoBehaviour
         switch (other.tag)
         {
             case "Player":
-                other.GetComponent<Player>().AdjustHealth(-damage);
+                if (!playerOwned)
+                {
+                    other.GetComponent<Player>().AdjustHealth(-damage);
+                    Destroy(gameObject);
+                }
                 break;
             case "Enemy":
-                other.GetComponent<Enemy>().AdjustHealth(-damage);
+                if (playerOwned)
+                {
+                    other.GetComponent<Enemy>().AdjustHealth(-damage);
+                    Destroy(gameObject);
+                }
                 break;
-        }
-
-        Destroy(gameObject);
+            default:
+                Destroy(gameObject);
+                break;
+        }        
     }
 
     public void SetVelocity(Vector3 direction)

@@ -24,18 +24,6 @@ public class Weapon : MonoBehaviour
         {
             GameObject newProjectile = Instantiate(projectile, firePoint.position, Quaternion.identity);
             newProjectile.GetComponent<Projectile>().SetVelocity(direction);
-            Physics.IgnoreCollision(newProjectile.GetComponent<Collider>(), gameObject.GetComponent<Collider>());
-
-            if (gameObject.tag == "Enemy")
-            {
-                GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-
-                foreach (GameObject enemy in enemies)
-                {
-                    Physics.IgnoreCollision(newProjectile.GetComponent<Collider>(), enemy.GetComponent<Collider>());
-                }
-            }
-            
             fireTimer = 0;
         }
     }
