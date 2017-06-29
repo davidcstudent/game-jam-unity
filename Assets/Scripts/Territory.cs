@@ -14,7 +14,7 @@ public class Territory : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public int GetEnemiesRemaining()
     {
         int enemiesLeft = 0;
 
@@ -23,6 +23,6 @@ public class Territory : MonoBehaviour
             enemiesLeft += node.GetEnemies().Count;
         }
 
-        Debug.Log("Enemies left: " + enemiesLeft);
+        return enemiesLeft;
     }
 }
