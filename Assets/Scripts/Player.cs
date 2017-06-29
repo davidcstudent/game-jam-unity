@@ -5,10 +5,18 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 
     public float movementDistance;
+    public float cameraSpeedHorizontal = 2.0f;
+    public float cameraSpeedVertical = 2.0f;
+
+    public GameObject cameraRotator;
+
+    private float yaw = 0;
+    private float pitch = 0;
 
 	// Use this for initialization
-	void Start () {
-		
+	void Start ()
+    {
+
 	}
 	
 	// Update is called once per frame
@@ -61,5 +69,11 @@ public class Player : MonoBehaviour {
             this.transform.position = playerPosition;
         }
         // ---------------------------------------------------
+
+        // Aim with mouse
+        yaw += cameraSpeedHorizontal * Input.GetAxis("Mouse X");
+        pitch -= cameraSpeedVertical * Input.GetAxis("Mouse Y");
+
+        cameraRotator.transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
     }
 }
