@@ -111,6 +111,11 @@ public class Player : MonoBehaviour {
     }
     // ---------------------------------------------------
 
+    public float getHealthPercent()
+    {
+        return currentHealth / (float)maxHealth;
+    }
+
     public int getScore()
     {
         return score;

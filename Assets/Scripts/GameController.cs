@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -22,7 +23,9 @@ public class GameController : MonoBehaviour
 
         if (gameOver)
         {
-            Application.Quit();
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            SceneManager.LoadScene("Main_Menu");
         }
     }
 }
