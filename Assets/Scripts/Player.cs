@@ -27,46 +27,51 @@ public class Player : MonoBehaviour {
         // Forward
         if (Input.GetKey(KeyCode.W))
         {
-            // get new player position
-            Vector3 playerPosition;
-            playerPosition.x = this.transform.position.x;
-            playerPosition.y = this.transform.position.y;
-            playerPosition.z = this.transform.position.z + movementDistance * Time.deltaTime;
-            // set players postion
-            this.transform.position = playerPosition;
+            //// get new player position
+            //Vector3 playerPosition;
+            //playerPosition.x = this.transform.position.x;
+            //playerPosition.y = this.transform.position.y;
+            //playerPosition.z = this.transform.position.z + movementDistance * Time.deltaTime;
+            //// set players postion
+            // this.transform.position = playerPosition;
+            transform.position += transform.forward * Time.deltaTime * movementDistance;
+
         }
         // Left
         if (Input.GetKey(KeyCode.A))
         {
-            // get new player position
-            Vector3 playerPosition;
-            playerPosition.x = this.transform.position.x - movementDistance * Time.deltaTime;
-            playerPosition.y = this.transform.position.y;
-            playerPosition.z = this.transform.position.z;
-            // set players postion
-            this.transform.position = playerPosition;
+            //// get new player position
+            //Vector3 playerPosition;
+            //playerPosition.x = this.transform.position.x - movementDistance * Time.deltaTime;
+            //playerPosition.y = this.transform.position.y;
+            //playerPosition.z = this.transform.position.z;
+            //// set players postion
+            //this.transform.position = playerPosition;
+            transform.position -= transform.right * Time.deltaTime * movementDistance;
         }
         // Down
         if (Input.GetKey(KeyCode.S))
         {
-            // get new player position
-            Vector3 playerPosition;
-            playerPosition.x = this.transform.position.x;
-            playerPosition.y = this.transform.position.y;
-            playerPosition.z = this.transform.position.z - movementDistance * Time.deltaTime;
-            // set players postion
-            this.transform.position = playerPosition;
+            //// get new player position
+            //Vector3 playerPosition;
+            //playerPosition.x = this.transform.position.x;
+            //playerPosition.y = this.transform.position.y;
+            //playerPosition.z = this.transform.position.z - movementDistance * Time.deltaTime;
+            //// set players postion
+            //this.transform.position = playerPosition;
+            transform.position -= transform.forward * Time.deltaTime * movementDistance;
         }
         // Right
         if (Input.GetKey(KeyCode.D))
         {
-            // get new player position
-            Vector3 playerPosition;
-            playerPosition.x = this.transform.position.x + movementDistance * Time.deltaTime;
-            playerPosition.y = this.transform.position.y;
-            playerPosition.z = this.transform.position.z;
-            // set players postion
-            this.transform.position = playerPosition;
+            //// get new player position
+            //Vector3 playerPosition;
+            //playerPosition.x = this.transform.position.x + movementDistance * Time.deltaTime;
+            //playerPosition.y = this.transform.position.y;
+            //playerPosition.z = this.transform.position.z;
+            //// set players postion
+            //this.transform.position = playerPosition;
+            transform.position += transform.right * Time.deltaTime * movementDistance;
         }
         // ---------------------------------------------------
 
@@ -74,6 +79,7 @@ public class Player : MonoBehaviour {
         yaw += cameraSpeedHorizontal * Input.GetAxis("Mouse X");
         pitch -= cameraSpeedVertical * Input.GetAxis("Mouse Y");
 
+        transform.eulerAngles = new Vector3(0.0f, yaw, 0.0f);
         cameraRotator.transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
     }
 }
