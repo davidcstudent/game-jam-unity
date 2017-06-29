@@ -22,7 +22,7 @@ public class Weapon : MonoBehaviour
         if (fireTimer >= fireRate)
         {
             GameObject newProjectile = Instantiate(projectile, transform.position, Quaternion.identity);
-            newProjectile.GetComponent<Projectile>().SetDirection(direction);
+            newProjectile.GetComponent<Projectile>().SetVelocity(direction);
             fireTimer = 0;
         }
     }

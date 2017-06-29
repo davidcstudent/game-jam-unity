@@ -8,10 +8,12 @@ public class Enemy : MonoBehaviour
     public float minDistanceToPlayer;
     public float maxDistanceToPlayer;
     public float maxFireRange;
-    
+    public int maxHealth;
+
+    private int currentHealth;
     private GameObject target;
     private Weapon weapon;
-    private bool isDead;
+    private bool isDead = false;
     private CharacterController controller;
 
 	void Start ()
@@ -19,10 +21,16 @@ public class Enemy : MonoBehaviour
         target = GameObject.FindGameObjectWithTag("Player");
         weapon = GetComponent<Weapon>();
         controller = GetComponent<CharacterController>();
-	}
+        currentHealth = maxHealth;
+    }
 	
 	void Update ()
     {
+        if (currentHealth <= 0)
+        {
+            isDead = true;
+        }
+
         Vector3 currentPosition = new Vector3(transform.position.x, 0, transform.position.z);
         Vector3 targetPosition = new Vector3(target.transform.position.x, 0, target.transform.position.z);
 
@@ -48,5 +56,10 @@ public class Enemy : MonoBehaviour
     public bool GetIsDead()
     {
         return isDead;
+    }
+
+    public void AdjustHealth(int amount)
+    {
+        currentHealth += amount;
     }
 }

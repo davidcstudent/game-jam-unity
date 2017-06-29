@@ -7,9 +7,10 @@ public class Player : MonoBehaviour {
     public float movementDistance;
     public float cameraSpeedHorizontal = 2.0f;
     public float cameraSpeedVertical = 2.0f;
-
+    public int maxHealth;
     public GameObject cameraRotator;
 
+    private int currentHealth;
     private float yaw = 0;
     private float pitch = 0;
     private Weapon currentWeapon;
@@ -17,11 +18,17 @@ public class Player : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
+        currentHealth = maxHealth;
         currentWeapon = GetComponent<Weapon>();
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
+        if (currentHealth <= 0)
+        {
+            GameObject.Find("Game Controller").GetComponent<GameController>().gameOver = true;
+        }
 
         // WASD input
         // ---------------------------------------------------
@@ -88,5 +95,10 @@ public class Player : MonoBehaviour {
         {
             currentWeapon.AttemptFire(cameraRotator.transform.forward);
         }
+    }
+
+    public void AdjustHealth(int amount)
+    {
+        currentHealth += amount;
     }
 }

@@ -5,15 +5,17 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public float maxLifeTime;
-    public float damage;
     public float speed;
+    public int damage;
+    public bool playerOwned;
 
     private float currentLifeTime = 0;
     private Vector3 direction = new Vector3(0, 0, 0);
+    
 
 	void Start ()
     {
-		
+
 	}
 
 	void Update ()
@@ -28,8 +30,34 @@ public class Projectile : MonoBehaviour
         }
 	}
 
-    public void SetDirection(Vector3 direction)
+    void OnTriggerEnter(Collider collider)
     {
-        this.direction = direction.normalized;
+        GameObject other = collider.gameObject;
+
+        switch (other.tag)
+        {
+            case "Player":
+                if (!playerOwned)
+                {
+                    other.GetComponent<Player>().AdjustHealth(-damage);
+                    Destroy(gameObject);
+                }
+                
+                break;
+            case "Enemy":
+                if (playerOwned)
+                {
+                    other.GetComponent<Enemy>().AdjustHealth(-damage);
+                    Destroy(gameObject);
+                }
+                break;
+        }
+    }
+
+    public void SetVelocity(Vector3 direction)
+    {
+        Rigidbody rigidbody = GetComponent<Rigidbody>();
+
+        rigidbody.velocity = direction.normalized * speed;
     }
 }
