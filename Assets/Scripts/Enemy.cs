@@ -5,6 +5,8 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public float movementSpeed;
+    public float minDistanceToPlayer;
+    public float maxDistanceToPlayer;
 
     private GameObject target;
 
@@ -15,8 +17,17 @@ public class Enemy : MonoBehaviour
 	
 	void Update ()
     {
-        Vector3 targetPosition = target.transform.position;
+        Vector3 currentPosition = new Vector3(transform.position.x, 0, transform.position.z);
+        Vector3 targetPosition = new Vector3(target.transform.position.x, 0, target.transform.position.z);
 
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, movementSpeed * Time.deltaTime);
-	}
+
+        if (Vector3.Distance(currentPosition, targetPosition) >= maxDistanceToPlayer)
+        {
+            transform.position = Vector3.MoveTowards(currentPosition, targetPosition, movementSpeed * Time.deltaTime);
+        }
+        else if (Vector3.Distance(currentPosition, targetPosition) <= minDistanceToPlayer)
+        {
+            transform.position = Vector3.MoveTowards(currentPosition, targetPosition, -movementSpeed * Time.deltaTime);
+        }
+    }
 }
