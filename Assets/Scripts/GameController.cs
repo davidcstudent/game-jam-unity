@@ -22,8 +22,7 @@ public class GameController : MonoBehaviour
 
         if (gameOver)
         {
-            //Application.Quit();
-            UnityEditor.EditorApplication.isPlaying = false;
+            Application.Quit();
         }
     }
 }
