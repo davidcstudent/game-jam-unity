@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     public bool gameOver = false;
+    public Territory currentTerritory;
 
 	void Start ()
     {

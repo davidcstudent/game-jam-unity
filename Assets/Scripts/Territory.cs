@@ -6,7 +6,7 @@ using UnityEngine;
 public class Territory : MonoBehaviour
 {
     // array of spawners
-    public GameObject[] spawnNodes;
+    public SpawnNode[] spawnNodes;
 
     // Use this for initialization
     void Start () {
@@ -14,8 +14,15 @@ public class Territory : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public int GetEnemiesRemaining()
     {
+        int enemiesLeft = 0;
 
+        foreach (SpawnNode node in spawnNodes)
+        {
+            enemiesLeft += node.GetEnemies().Count;
+        }
+
+        return enemiesLeft;
     }
 }
