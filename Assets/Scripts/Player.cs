@@ -21,9 +21,9 @@ public class Player : MonoBehaviour {
         {
             // get new player position
             Vector3 playerPosition;
-            playerPosition.x = this.transform.position.x + movementDistance;
+            playerPosition.x = this.transform.position.x;
             playerPosition.y = this.transform.position.y;
-            playerPosition.z = this.transform.position.z;
+            playerPosition.z = this.transform.position.z + movementDistance * Time.deltaTime;
             // set players postion
             this.transform.position = playerPosition;
         }
@@ -32,9 +32,9 @@ public class Player : MonoBehaviour {
         {
             // get new player position
             Vector3 playerPosition;
-            playerPosition.x = this.transform.position.x;
+            playerPosition.x = this.transform.position.x - movementDistance * Time.deltaTime;
             playerPosition.y = this.transform.position.y;
-            playerPosition.z = this.transform.position.z + movementDistance;
+            playerPosition.z = this.transform.position.z;
             // set players postion
             this.transform.position = playerPosition;
         }
@@ -43,9 +43,9 @@ public class Player : MonoBehaviour {
         {
             // get new player position
             Vector3 playerPosition;
-            playerPosition.x = this.transform.position.x - movementDistance;
+            playerPosition.x = this.transform.position.x;
             playerPosition.y = this.transform.position.y;
-            playerPosition.z = this.transform.position.z;
+            playerPosition.z = this.transform.position.z - movementDistance * Time.deltaTime;
             // set players postion
             this.transform.position = playerPosition;
         }
@@ -54,9 +54,9 @@ public class Player : MonoBehaviour {
         {
             // get new player position
             Vector3 playerPosition;
-            playerPosition.x = this.transform.position.x;
+            playerPosition.x = this.transform.position.x + movementDistance * Time.deltaTime;
             playerPosition.y = this.transform.position.y;
-            playerPosition.z = this.transform.position.z - movementDistance;
+            playerPosition.z = this.transform.position.z;
             // set players postion
             this.transform.position = playerPosition;
         }
