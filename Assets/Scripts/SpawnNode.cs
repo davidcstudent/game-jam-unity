@@ -49,7 +49,7 @@ public class SpawnNode : MonoBehaviour {
         enemies.RemoveAt(index);
     }
 
-    List<GameObject> GetEnemies()
+    public List<GameObject> GetEnemies()
     {
         return enemies;
     }
