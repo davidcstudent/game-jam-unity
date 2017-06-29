@@ -53,6 +53,15 @@ public class Enemy : MonoBehaviour
         {
             weapon.AttemptFire(targetPosition - currentPosition);
         }
+
+        // set rotation
+        // ---------------------------------------------------
+        this.transform.rotation = 
+            Quaternion.LookRotation(
+                (targetPosition - transform.position).normalized);
+        // ---------------------------------------------------
+
+
     }
 
     public bool GetIsDead()
