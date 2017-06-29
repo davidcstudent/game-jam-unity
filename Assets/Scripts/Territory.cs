@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 // TODO:: increment score when update removes dead enemy
 
 public class Territory : MonoBehaviour {
@@ -11,44 +10,19 @@ public class Territory : MonoBehaviour {
 
     // spawnnode
     // this is for spawning enemies at certain locations
-    // not working yet
     public GameObject spawnnode;
 
-    // how many enemies to spawn
-    public int enemyAmount;
-
-    List<GameObject> enemies;
+    // array of spawners
+    public GameObject[] Spawners;
 
     // Use this for initialization
     void Start () {
 
-        // create new list
-        enemies = new List<GameObject>();
-
-        // spawn enemies and add them to list
-        for (int i = 0; i < enemyAmount; i++)
-        {
-            GameObject enemyClone = (GameObject)Instantiate(enemy, transform.position, transform.rotation);
-            enemies.Add(enemyClone);
-        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        // loop through enemies
-        for (int i = 0; i < enemies.Count; i++)
-        {
-            GetComponent<Enemy>();
-            // if the enemy is dead
-            if (enemies[i].GetComponent<Enemy>().GetIsDead())
-            {
-                // destroy enemy
-                Destroy(enemies[i]);
-                // remove from list
-                enemies.RemoveAt(i);
-                // increment score
-            }
-        }
+
     }
 }
