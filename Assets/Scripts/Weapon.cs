@@ -23,6 +23,7 @@ public class Weapon : MonoBehaviour
         {
             GameObject newProjectile = Instantiate(projectile, transform.position, Quaternion.identity);
             newProjectile.GetComponent<Projectile>().SetVelocity(direction);
+            Physics.IgnoreCollision(newProjectile.GetComponent<Collider>(), gameObject.GetComponent<Collider>());
             fireTimer = 0;
         }
     }

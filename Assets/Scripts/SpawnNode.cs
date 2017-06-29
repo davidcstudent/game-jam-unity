@@ -32,7 +32,7 @@ public class SpawnNode : MonoBehaviour {
         // loop through enemies
         for (int i = 0; i < enemies.Count; i++)
         {
-            GetComponent<Enemy>();
+            //GetComponent<Enemy>();
             // if the enemy is dead
             if (enemies[i].GetComponent<Enemy>().GetIsDead())
             {

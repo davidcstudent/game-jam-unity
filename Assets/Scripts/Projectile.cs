@@ -37,21 +37,14 @@ public class Projectile : MonoBehaviour
         switch (other.tag)
         {
             case "Player":
-                if (!playerOwned)
-                {
-                    other.GetComponent<Player>().AdjustHealth(-damage);
-                    Destroy(gameObject);
-                }
-                
+                other.GetComponent<Player>().AdjustHealth(-damage);
                 break;
             case "Enemy":
-                if (playerOwned)
-                {
-                    other.GetComponent<Enemy>().AdjustHealth(-damage);
-                    Destroy(gameObject);
-                }
+                other.GetComponent<Enemy>().AdjustHealth(-damage);
                 break;
         }
+
+        Destroy(gameObject);
     }
 
     public void SetVelocity(Vector3 direction)
