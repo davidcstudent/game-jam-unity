@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     
     private GameObject target;
     private Weapon weapon;
+    private bool isDead;
 
 	void Start ()
     {
@@ -36,5 +37,10 @@ public class Enemy : MonoBehaviour
         {
             weapon.AttemptFire(targetPosition - currentPosition);
         }
+    }
+
+    public bool GetIsDead()
+    {
+        return isDead;
     }
 }
