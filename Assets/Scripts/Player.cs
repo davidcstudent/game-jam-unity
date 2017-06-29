@@ -5,6 +5,8 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 
     public float movementDistance;
+    public float WalkingSpeed = 1.0f;
+    public float SprintingSpeed = 2.0f;
     public float cameraSpeedHorizontal = 2.0f;
     public float cameraSpeedVertical = 2.0f;
     public int maxHealth;
@@ -15,6 +17,7 @@ public class Player : MonoBehaviour {
     public GameObject cameraRotator;
 
     private int currentHealth;
+    private float movementSpeed;
     private float yaw = 0;
     private float pitch = 0;
     private Weapon currentWeapon;
@@ -27,6 +30,7 @@ public class Player : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        movementSpeed = WalkingSpeed;
         currentHealth = maxHealth;
         currentWeapon = GetComponent<Weapon>();
 	}
@@ -39,27 +43,37 @@ public class Player : MonoBehaviour {
             GameObject.Find("Game Controller").GetComponent<GameController>().gameOver = true;
         }
 
+        // sprinting
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            movementSpeed = SprintingSpeed;
+        }
+        else
+        {
+            movementSpeed = WalkingSpeed;
+        }
+
         // WASD input
         // ---------------------------------------------------
         // Forward
         if (Input.GetKey(KeyCode.W))
         {
-            transform.position += transform.forward * Time.deltaTime * movementDistance;
+            transform.position += transform.forward * Time.deltaTime * movementDistance * movementSpeed;
         }
         // Left
         if (Input.GetKey(KeyCode.A))
         {
-            transform.position -= transform.right * Time.deltaTime * movementDistance;
+            transform.position -= transform.right * Time.deltaTime * movementDistance * movementSpeed;
         }
         // Down
         if (Input.GetKey(KeyCode.S))
         {
-            transform.position -= transform.forward * Time.deltaTime * movementDistance;
+            transform.position -= transform.forward * Time.deltaTime * movementDistance * movementSpeed;
         }
         // Right
         if (Input.GetKey(KeyCode.D))
         {
-            transform.position += transform.right * Time.deltaTime * movementDistance;
+            transform.position += transform.right * Time.deltaTime * movementDistance * movementSpeed;
         }
         // ---------------------------------------------------
 
