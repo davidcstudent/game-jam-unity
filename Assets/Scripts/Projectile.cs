@@ -7,7 +7,6 @@ public class Projectile : MonoBehaviour
     public float maxLifeTime;
     public float speed;
     public int damage;
-    public bool playerOwned;
 
     private float currentLifeTime = 0;
     private Vector3 direction = new Vector3(0, 0, 0);

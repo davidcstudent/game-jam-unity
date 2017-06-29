@@ -22,7 +22,7 @@ public class SpawnNode : MonoBehaviour {
         // spawn enemies and add them to list
         for (int i = 0; i < enemyAmount; i++)
         {
-            GameObject enemyClone = (GameObject)Instantiate(enemy, transform.position, transform.rotation);
+            GameObject enemyClone = Instantiate(enemy, transform.position, transform.rotation);
             enemies.Add(enemyClone);
         }
     }

@@ -22,6 +22,8 @@ public class Enemy : MonoBehaviour
         weapon = GetComponent<Weapon>();
         controller = GetComponent<CharacterController>();
         currentHealth = maxHealth;
+
+        controller.detectCollisions = false;
     }
 	
 	void Update ()
