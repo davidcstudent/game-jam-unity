@@ -48,8 +48,7 @@ public class Enemy : MonoBehaviour
             controller.Move(direction * -movementSpeed * Time.deltaTime);
             //transform.position = Vector3.MoveTowards(currentPosition, targetPosition, -movementSpeed * Time.deltaTime);
         }
-
-        if (Vector3.Distance(currentPosition, targetPosition) < maxFireRange)
+        else
         {
             weapon.AttemptFire(targetPosition - currentPosition);
         }

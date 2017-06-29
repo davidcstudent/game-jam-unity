@@ -16,11 +16,6 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            gameOver = true;
-        }
-
         if (gameOver)
         {
             Cursor.visible = true;
