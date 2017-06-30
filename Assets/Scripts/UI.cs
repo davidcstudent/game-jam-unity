@@ -8,6 +8,7 @@ public class UI : MonoBehaviour
     public Text scoreText;
     public GameController controller;
     public Image healthImage;
+    public Image Indicator;
     public Sprite[] sprites = new Sprite[5];
 
     private Player player;
@@ -44,4 +45,14 @@ public class UI : MonoBehaviour
             healthImage.sprite = sprites[4];
         }
     }
+
+
+     public void DamageIndicator(Projectile projectile, GameObject player)
+    {
+        Quaternion rotation = Quaternion.LookRotation
+            (player.transform.position - projectile.transform.position);
+
+        Indicator.rectTransform.localRotation = Quaternion.Euler(0, 0, -rotation.eulerAngles.y);
+    }
+
 }
