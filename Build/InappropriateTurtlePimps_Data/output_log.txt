@@ -1,0 +1,54 @@
+Initialize engine version: 5.5.1f1 (88d00a7498cd)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 960 (ID=0x1401)
+    Vendor:   NVIDIA
+    VRAM:     3072 MB
+    Driver:   21.21.13.7633
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\s171224\Desktop\GameJam\Build\InappropriateTurtlePimps_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\s171224\Desktop\GameJam\Build\InappropriateTurtlePimps_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\s171224\Desktop\GameJam\Build\InappropriateTurtlePimps_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\s171224\Desktop\GameJam\Build\InappropriateTurtlePimps_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\s171224\Desktop\GameJam\Build\InappropriateTurtlePimps_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\s171224\Desktop\GameJam\Build\InappropriateTurtlePimps_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\s171224\Desktop\GameJam\Build\InappropriateTurtlePimps_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\s171224\Desktop\GameJam\Build\InappropriateTurtlePimps_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\s171224\Desktop\GameJam\Build\InappropriateTurtlePimps_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll (this message is harmless)
+Loading C:\Users\s171224\Desktop\GameJam\Build\InappropriateTurtlePimps_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
+- Completed reload, in  0.265 seconds
+Platform assembly: C:\Users\s171224\Desktop\GameJam\Build\InappropriateTurtlePimps_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\s171224\Desktop\GameJam\Build\InappropriateTurtlePimps_Data\Managed\System.dll (this message is harmless)
+desktop: 1680x1050 59Hz; virtual: 3360x1050 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 0.899292 ms
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 27e0 -> priority: 1 
+  Thread -> id: 2730 -> priority: 1 
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 5.738583 ms
+
+Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 937.
+Total: 0.340727 ms (FindLiveObjects: 0.056787 ms CreateObjectMapping: 0.031548 ms MarkObjects: 0.240672 ms  DeleteObjects: 0.011117 ms)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.655314 ms
+
+Unloading 188 unused Assets to reduce memory usage. Loaded Objects now: 287.
+Total: 0.664027 ms (FindLiveObjects: 0.035154 ms CreateObjectMapping: 0.021333 ms MarkObjects: 0.192598 ms  DeleteObjects: 0.414040 ms)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.344933 ms
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 271.
+Total: 0.215133 ms (FindLiveObjects: 0.023436 ms CreateObjectMapping: 0.014722 ms MarkObjects: 0.169161 ms  DeleteObjects: 0.007211 ms)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.298962 ms
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 287.
+Total: 0.225348 ms (FindLiveObjects: 0.023135 ms CreateObjectMapping: 0.015023 ms MarkObjects: 0.183283 ms  DeleteObjects: 0.003305 ms)
+
