@@ -39,8 +39,6 @@ public class Player : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        Debug.Log(renderer.material.color);
-
         if (renderer.material.color.g < 1)
         {
             renderer.material.color += new Color(0, 0.1f, 0);
