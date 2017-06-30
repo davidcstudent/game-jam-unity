@@ -50,7 +50,7 @@ public class UI : MonoBehaviour
      public void DamageIndicator(Projectile projectile, GameObject player)
     {
         Quaternion rotation = Quaternion.LookRotation
-            (player.transform.position - projectile.transform.position);
+            (projectile.transform.position - player.transform.position);
 
         Indicator.rectTransform.localRotation = Quaternion.Euler(0, 0, -rotation.eulerAngles.y);
     }
