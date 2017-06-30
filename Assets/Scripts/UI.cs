@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class UI : MonoBehaviour
 {
     public Text scoreText;
+    public Text gameOverText;
+    public Text reminderText;
     public GameController controller;
     public Image healthImage;
     public Image Indicator;
@@ -46,10 +48,23 @@ public class UI : MonoBehaviour
             healthImage.sprite = sprites[4];
         }
 
-
         if (hitMarker.color.a > 0)
         {
             hitMarker.color += new Color(0, 0, 0, -0.02f);
+        }
+
+        if (controller.gameOver)
+        {
+            reminderText.color = Color.white;
+            gameOverText.color = Color.white;
+            gameOverText.text = "Wasted!";
+        }
+
+        if (controller.gameWon)
+        {
+            reminderText.color = Color.white;
+            gameOverText.color = Color.white;
+            gameOverText.text = "You took back your turf!";
         }
     }
 
