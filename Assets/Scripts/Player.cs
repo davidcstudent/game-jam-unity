@@ -23,6 +23,7 @@ public class Player : MonoBehaviour {
     private float pitch = 0;
     private Weapon currentWeapon;
     private float DodgeTimer;
+    private CharacterController controller;
 
     private Vector3 velocity = new Vector3(0.0f, 0.0f, 0.0f);
 
@@ -34,11 +35,17 @@ public class Player : MonoBehaviour {
         movementSpeed = WalkingSpeed;
         currentHealth = maxHealth;
         currentWeapon = GetComponent<Weapon>();
-	}
+        controller = GetComponent<CharacterController>();
+    }
 	
 	// Update is called once per frame
 	void Update ()
     {
+        if (meshRenderer.material.color.r > 1)
+        {
+            meshRenderer.material.color += new Color(-1f, 0, 0);
+        }
+
         if (meshRenderer.material.color.g < 1)
         {
             meshRenderer.material.color += new Color(0, 0.1f, 0);
@@ -69,22 +76,22 @@ public class Player : MonoBehaviour {
         // Forward
         if (Input.GetKey(KeyCode.W))
         {
-            transform.position += transform.forward * Time.deltaTime * movementDistance * movementSpeed;
+            controller.Move(transform.forward * Time.deltaTime * movementDistance * movementSpeed);
         }
         // Left
         if (Input.GetKey(KeyCode.A))
         {
-            transform.position -= transform.right * Time.deltaTime * movementDistance * movementSpeed;
+            controller.Move(-transform.right * Time.deltaTime * movementDistance * movementSpeed);
         }
         // Down
         if (Input.GetKey(KeyCode.S))
         {
-            transform.position -= transform.forward * Time.deltaTime * movementDistance * movementSpeed;
+            controller.Move(-transform.forward * Time.deltaTime * movementDistance * movementSpeed);
         }
         // Right
         if (Input.GetKey(KeyCode.D))
         {
-            transform.position += transform.right * Time.deltaTime * movementDistance * movementSpeed;
+            controller.Move(transform.right * Time.deltaTime * movementDistance * movementSpeed);
         }
         // ---------------------------------------------------
 
@@ -123,7 +130,7 @@ public class Player : MonoBehaviour {
 
     public void AdjustHealth(int amount)
     {
-        meshRenderer.material.color = new Color(1, 0, 0);
+        meshRenderer.material.color = new Color(10, 0, 0);
 
         currentHealth += amount;
     }
