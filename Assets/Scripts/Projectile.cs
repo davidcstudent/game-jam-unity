@@ -39,6 +39,10 @@ public class Projectile : MonoBehaviour
                 if (!playerOwned)
                 {
                     other.GetComponent<Player>().AdjustHealth(-damage);
+                    // get UI to show damage indicator
+                    UI[] UIvar = Object.FindObjectsOfType(typeof(UI)) as UI[];
+                    UIvar[0].GetComponent<UI>().DamageIndicator(this, other);
+
                     Destroy(gameObject);
                 }
                 break;
