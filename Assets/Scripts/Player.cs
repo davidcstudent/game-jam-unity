@@ -15,6 +15,7 @@ public class Player : MonoBehaviour {
     public float JumpHeight = 100.0f;
     public float energyLoss = 1.0f;
     public GameObject cameraRotator;
+    public MeshRenderer meshRenderer;
 
     private int currentHealth;
     private float movementSpeed;
@@ -38,6 +39,16 @@ public class Player : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        if (meshRenderer.material.color.g < 1)
+        {
+            meshRenderer.material.color += new Color(0, 0.1f, 0);
+        }
+
+        if (meshRenderer.material.color.b < 1)
+        {
+            meshRenderer.material.color += new Color(0, 0, 0.1f);
+        }
+
         if (currentHealth <= 0)
         {
             GameObject.Find("Game Controller").GetComponent<GameController>().gameOver = true;
@@ -112,6 +123,8 @@ public class Player : MonoBehaviour {
 
     public void AdjustHealth(int amount)
     {
+        meshRenderer.material.color = new Color(1, 0, 0);
+
         currentHealth += amount;
     }
 
