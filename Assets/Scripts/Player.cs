@@ -15,7 +15,7 @@ public class Player : MonoBehaviour {
     public float JumpHeight = 100.0f;
     public float energyLoss = 1.0f;
     public GameObject cameraRotator;
-    public MeshRenderer renderer;
+    public MeshRenderer meshRenderer;
 
     private int currentHealth;
     private float movementSpeed;
@@ -39,14 +39,16 @@ public class Player : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        if (renderer.material.color.g < 1)
+        Debug.Log(currentHealth);
+
+        if (meshRenderer.material.color.g < 1)
         {
-            renderer.material.color += new Color(0, 0.1f, 0);
+            meshRenderer.material.color += new Color(0, 0.1f, 0);
         }
 
-        if (renderer.material.color.b < 1)
+        if (meshRenderer.material.color.b < 1)
         {
-            renderer.material.color += new Color(0, 0, 0.1f);
+            meshRenderer.material.color += new Color(0, 0, 0.1f);
         }
 
         if (currentHealth <= 0)
@@ -123,7 +125,7 @@ public class Player : MonoBehaviour {
 
     public void AdjustHealth(int amount)
     {
-        renderer.material.color = new Color(1, 0, 0);
+        meshRenderer.material.color = new Color(1, 0, 0);
 
         currentHealth += amount;
     }
