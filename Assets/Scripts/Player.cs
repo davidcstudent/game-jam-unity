@@ -136,16 +136,37 @@ public class Player : MonoBehaviour {
         }
     }
 
+    void OnTriggerEnter(Collider collider)
+    {
+        GameObject other = collider.gameObject;
+
+        if (other.tag == "HealthPickup")
+        {
+            AdjustHealth(other.GetComponent<HealthPickup>().RestoreAmount);
+            Destroy(other);
+        }
+        if (other.tag == "AmmoPickup")
+        {
+            // add ammo
+            // ammo hasn't been implemented yet
+        }
+    }
+
     public void AdjustHealth(int amount)
     {
         if (amount < 0)
         {
             meshRenderer.material.color = new Color(10, 0, 0);
             hitMarker.color += new Color(0, 0, 0, 0.2f);
-        }
-        
+        }        
 
         currentHealth += amount;
+
+        if(currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+
     }
 
     void checkDodge()
