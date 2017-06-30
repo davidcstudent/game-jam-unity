@@ -9,6 +9,7 @@ public class UI : MonoBehaviour
     public GameController controller;
     public Image healthImage;
     public Image Indicator;
+    public Image hitMarker;
     public Sprite[] sprites = new Sprite[5];
 
     private Player player;
@@ -43,6 +44,12 @@ public class UI : MonoBehaviour
         else
         {
             healthImage.sprite = sprites[4];
+        }
+
+
+        if (hitMarker.color.a > 0)
+        {
+            hitMarker.color += new Color(0, 0, 0, -0.02f);
         }
     }
 

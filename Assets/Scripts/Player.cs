@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
 
@@ -16,6 +17,7 @@ public class Player : MonoBehaviour {
     public float energyLoss = 1.0f;
     public GameObject cameraRotator;
     public MeshRenderer meshRenderer;
+    public Image hitMarker;
 
     private int currentHealth;
     private float movementSpeed;
@@ -130,7 +132,12 @@ public class Player : MonoBehaviour {
 
     public void AdjustHealth(int amount)
     {
-        meshRenderer.material.color = new Color(10, 0, 0);
+        if (amount < 0)
+        {
+            meshRenderer.material.color = new Color(10, 0, 0);
+            hitMarker.color += new Color(0, 0, 0, 0.2f);
+        }
+        
 
         currentHealth += amount;
     }
