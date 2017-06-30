@@ -16,6 +16,16 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            gameOver = true;
+        }
+
+        if (currentTerritory.GetEnemiesRemaining() == 0)
+        {
+            gameOver = true;
+        }
+
         if (gameOver)
         {
             Cursor.visible = true;
