@@ -58,7 +58,8 @@ public class Projectile : MonoBehaviour
     public void SetVelocity(Vector3 direction)
     {
         Rigidbody rigidbody = GetComponent<Rigidbody>();
-
         rigidbody.velocity = direction.normalized * speed;
+
+        transform.forward = rigidbody.velocity;
     }
 }
