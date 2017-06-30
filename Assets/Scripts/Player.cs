@@ -91,6 +91,15 @@ public class Player : MonoBehaviour {
         yaw += cameraSpeedHorizontal * Input.GetAxis("Mouse X");
         pitch -= cameraSpeedVertical * Input.GetAxis("Mouse Y");
 
+        if (pitch > 75f)
+        {
+            pitch = 75f;
+        }
+        if (pitch < -75f)
+        {
+            pitch = -75f;
+        }
+
         transform.eulerAngles = new Vector3(0.0f, yaw, 0.0f);
         cameraRotator.transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
 
