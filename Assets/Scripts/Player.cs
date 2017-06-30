@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
 
@@ -16,6 +17,7 @@ public class Player : MonoBehaviour {
     public float energyLoss = 1.0f;
     public GameObject cameraRotator;
     public MeshRenderer meshRenderer;
+    public Image hitMarker;
 
     private int currentHealth;
     private float movementSpeed;
@@ -23,6 +25,7 @@ public class Player : MonoBehaviour {
     private float pitch = 0;
     private Weapon currentWeapon;
     private float DodgeTimer;
+    private CharacterController controller;
 
     private Vector3 velocity = new Vector3(0.0f, 0.0f, 0.0f);
 
@@ -34,11 +37,17 @@ public class Player : MonoBehaviour {
         movementSpeed = WalkingSpeed;
         currentHealth = maxHealth;
         currentWeapon = GetComponent<Weapon>();
-	}
+        controller = GetComponent<CharacterController>();
+    }
 	
 	// Update is called once per frame
 	void Update ()
     {
+        if (meshRenderer.material.color.r > 1)
+        {
+            meshRenderer.material.color += new Color(-1f, 0, 0);
+        }
+
         if (meshRenderer.material.color.g < 1)
         {
             meshRenderer.material.color += new Color(0, 0.1f, 0);
@@ -69,22 +78,22 @@ public class Player : MonoBehaviour {
         // Forward
         if (Input.GetKey(KeyCode.W))
         {
-            transform.position += transform.forward * Time.deltaTime * movementDistance * movementSpeed;
+            controller.Move(transform.forward * Time.deltaTime * movementDistance * movementSpeed);
         }
         // Left
         if (Input.GetKey(KeyCode.A))
         {
-            transform.position -= transform.right * Time.deltaTime * movementDistance * movementSpeed;
+            controller.Move(-transform.right * Time.deltaTime * movementDistance * movementSpeed);
         }
         // Down
         if (Input.GetKey(KeyCode.S))
         {
-            transform.position -= transform.forward * Time.deltaTime * movementDistance * movementSpeed;
+            controller.Move(-transform.forward * Time.deltaTime * movementDistance * movementSpeed);
         }
         // Right
         if (Input.GetKey(KeyCode.D))
         {
-            transform.position += transform.right * Time.deltaTime * movementDistance * movementSpeed;
+            controller.Move(transform.right * Time.deltaTime * movementDistance * movementSpeed);
         }
         // ---------------------------------------------------
 
@@ -123,7 +132,12 @@ public class Player : MonoBehaviour {
 
     public void AdjustHealth(int amount)
     {
-        meshRenderer.material.color = new Color(1, 0, 0);
+        if (amount < 0)
+        {
+            meshRenderer.material.color = new Color(10, 0, 0);
+            hitMarker.color += new Color(0, 0, 0, 0.2f);
+        }
+        
 
         currentHealth += amount;
     }

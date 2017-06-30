@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     public float maxDistanceToPlayer;
     public float maxFireRange;
     public int maxHealth;
+    public MeshRenderer meshRenderer;
 
     private int currentHealth;
     private GameObject target;
@@ -28,6 +29,21 @@ public class Enemy : MonoBehaviour
 	
 	void Update ()
     {
+        if (meshRenderer.material.color.r > 1)
+        {
+            meshRenderer.material.color += new Color(-1f, 0, 0);
+        }
+
+        if (meshRenderer.material.color.g < 1)
+        {
+            meshRenderer.material.color += new Color(0, 0.1f, 0);
+        }
+
+        if (meshRenderer.material.color.b < 1)
+        {
+            meshRenderer.material.color += new Color(0, 0, 0.1f);
+        }
+
         if (currentHealth <= 0)
         {
             isDead = true;
@@ -70,6 +86,8 @@ public class Enemy : MonoBehaviour
 
     public void AdjustHealth(int amount)
     {
+        meshRenderer.material.color = new Color(10, 0, 0);
+
         currentHealth += amount;
     }
 }
