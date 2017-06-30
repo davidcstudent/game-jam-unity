@@ -5,24 +5,32 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 
     public float movementDistance;
+    public float WalkingSpeed = 1.0f;
+    public float SprintingSpeed = 2.0f;
     public float cameraSpeedHorizontal = 2.0f;
     public float cameraSpeedVertical = 2.0f;
     public int maxHealth;
     public float DodgeRate = 2.0f;
     public float DodgeDistance = 25.0f;
+    public float JumpHeight = 100.0f;
+    public float energyLoss = 1.0f;
     public GameObject cameraRotator;
 
     private int currentHealth;
+    private float movementSpeed;
     private float yaw = 0;
     private float pitch = 0;
     private Weapon currentWeapon;
     private float DodgeTimer;
+
+    private Vector3 velocity = new Vector3(0.0f, 0.0f, 0.0f);
 
     private int score = 0;
 
     // Use this for initialization
     void Start ()
     {
+        movementSpeed = WalkingSpeed;
         currentHealth = maxHealth;
         currentWeapon = GetComponent<Weapon>();
 	}
@@ -35,33 +43,48 @@ public class Player : MonoBehaviour {
             GameObject.Find("Game Controller").GetComponent<GameController>().gameOver = true;
         }
 
+        // sprinting
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            movementSpeed = SprintingSpeed;
+        }
+        else
+        {
+            movementSpeed = WalkingSpeed;
+        }
+
         // WASD input
         // ---------------------------------------------------
         // Forward
         if (Input.GetKey(KeyCode.W))
         {
-            transform.position += transform.forward * Time.deltaTime * movementDistance;
+            transform.position += transform.forward * Time.deltaTime * movementDistance * movementSpeed;
         }
         // Left
         if (Input.GetKey(KeyCode.A))
         {
-            transform.position -= transform.right * Time.deltaTime * movementDistance;
+            transform.position -= transform.right * Time.deltaTime * movementDistance * movementSpeed;
         }
         // Down
         if (Input.GetKey(KeyCode.S))
         {
-            transform.position -= transform.forward * Time.deltaTime * movementDistance;
+            transform.position -= transform.forward * Time.deltaTime * movementDistance * movementSpeed;
         }
         // Right
         if (Input.GetKey(KeyCode.D))
         {
-            transform.position += transform.right * Time.deltaTime * movementDistance;
+            transform.position += transform.right * Time.deltaTime * movementDistance * movementSpeed;
         }
         // ---------------------------------------------------
 
         // dodge
         // ---------------------------------------------------
         checkDodge();
+        // ---------------------------------------------------
+
+        // jump
+        // ---------------------------------------------------
+        jump();
         // ---------------------------------------------------
 
         // Aim with mouse
@@ -110,6 +133,38 @@ public class Player : MonoBehaviour {
         }
     }
     // ---------------------------------------------------
+
+    void jump()
+    {
+        // apply gravity
+        transform.position -= new Vector3(0.0f, 9.81f, 0.0f) * Time.deltaTime;
+
+        // check if player has pressed jump key and hasn't aleady jumped
+        if (Input.GetKey(KeyCode.Space) &&
+            !(transform.position.y >= 0.0f))
+        {
+            // modify velocity for jump
+            velocity += transform.up * Time.deltaTime * JumpHeight;
+        }
+
+        // apply velocity
+        transform.position += velocity;
+
+        // velocity loses energy over time
+        velocity -= transform.up * Time.deltaTime * energyLoss;
+
+        // if player is below the ground
+        if (transform.position.y <= 0.0f)
+        {
+            transform.position = new Vector3(transform.position.x, 0.0f, transform.position.z);
+        }
+    }
+
+
+    public float getHealthPercent()
+    {
+        return currentHealth / (float)maxHealth;
+    }
 
     public int getScore()
     {
