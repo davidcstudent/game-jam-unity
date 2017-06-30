@@ -43,6 +43,12 @@ public class Player : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        if (currentHealth <= 0)
+        {
+            GameObject.Find("Game Controller").GetComponent<GameController>().gameOver = true;
+            return;
+        }
+
         if (meshRenderer.material.color.r > 1)
         {
             meshRenderer.material.color += new Color(-1f, 0, 0);
