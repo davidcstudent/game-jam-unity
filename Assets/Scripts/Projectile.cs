@@ -11,6 +11,7 @@ public class Projectile : MonoBehaviour
 
     private float currentLifeTime = 0;
     private Vector3 direction = new Vector3(0, 0, 0);
+    private bool isAlive = true;
 
 	void Start ()
     {
@@ -19,8 +20,6 @@ public class Projectile : MonoBehaviour
 
 	void Update ()
     {
-        transform.position += direction * speed * Time.deltaTime;
-
         currentLifeTime += Time.deltaTime;
 
         if (currentLifeTime >= maxLifeTime)
@@ -36,20 +35,21 @@ public class Projectile : MonoBehaviour
         switch (other.tag)
         {
             case "Player":
-                if (!playerOwned)
+                if (!playerOwned && isAlive)
                 {
                     other.GetComponent<Player>().AdjustHealth(-damage);
+                    isAlive = false;
+                    Destroy(gameObject);
                     // get UI to show damage indicator
                     UI[] UIvar = Object.FindObjectsOfType(typeof(UI)) as UI[];
                     UIvar[0].GetComponent<UI>().DamageIndicator(this, other);
-
-                    Destroy(gameObject);
                 }
                 break;
             case "Enemy":
-                if (playerOwned)
+                if (playerOwned && isAlive)
                 {
                     other.GetComponent<Enemy>().AdjustHealth(-damage);
+                    isAlive = false;
                     Destroy(gameObject);
                 }
                 break;
